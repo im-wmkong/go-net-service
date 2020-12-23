@@ -6,11 +6,6 @@ import (
 
 var logger *zap.SugaredLogger
 
-func Initialize() {
-	logger = NewLogger().Sugar()
-	_ = logger.Sync()
-}
-
 func Debug(args ...interface{}) {
 	logger.Debug(args...)
 }

@@ -21,6 +21,11 @@ var levelMap = map[string]zapcore.Level{
 	"fatal":  zapcore.FatalLevel,
 }
 
+func init() {
+	logger = NewLogger().Sugar()
+	_ = logger.Sync()
+}
+
 func NewLogger() *zap.Logger {
 	core := newCore(getFilePath(), getLevel(), true)
 	return zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.Development())
@@ -60,7 +65,7 @@ func getLogFilename() string {
 }
 
 func getLogLevel() string {
-	return config.GetString("log.level")
+	return config.GetString("logger.level")
 }
 
 func getEncoderConfig() zapcore.EncoderConfig {
