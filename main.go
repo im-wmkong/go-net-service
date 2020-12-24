@@ -1,13 +1,9 @@
 package main
 
 import (
-	"go-net-service/config"
+	_ "go-net-service/bootstrap"
 	"go-net-service/servers"
 )
-
-func init() {
-	config.Initialize()
-}
 
 func main() {
 	servers.Start()
