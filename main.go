@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	servers.Start()
+	servers.NewServers().Start()
 }

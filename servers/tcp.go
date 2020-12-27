@@ -14,8 +14,8 @@ type TcpServer struct {
 	Network string
 }
 
-func NewTcpServer() TcpServer {
-	return TcpServer{
+func NewTcpServer() *TcpServer {
+	return &TcpServer{
 		Host:    config.GetString("servers.tcp.host"),
 		Port:    config.GetInt("servers.tcp.port"),
 		Network: "tcp4",
@@ -23,7 +23,7 @@ func NewTcpServer() TcpServer {
 }
 
 func (s TcpServer) Start() {
-	logger.Infof("Starting Tcp Server at Host: %s, Port:%d", s.Host, s.Port)
+	logger.Infof("Starting Tcp Server at Host: %s, Port: %d", s.Host, s.Port)
 
 	// 获取一个tcp addr
 	address, err := net.ResolveTCPAddr(s.Network, fmt.Sprintf("%s:%d", s.Host, s.Port))
@@ -45,6 +45,6 @@ func (s TcpServer) Start() {
 			logger.Errorf("Accept err %s", err)
 			continue
 		}
-		connections.NewTcpConnection(connection)
+		go connections.NewTcpConnection(connection).Start()
 	}
 }

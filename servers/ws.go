@@ -1,8 +1,14 @@
 package servers
 
+import "go-net-service/pkg/logger"
+
 type WsServer struct {
 }
 
-func (s WsServer) Start() {
+func NewWsServer() *WsServer {
+	return &WsServer{}
+}
 
+func (s *WsServer) Start() {
+	logger.Info("Starting WebSocket Server")
 }
