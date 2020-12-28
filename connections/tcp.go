@@ -1,6 +1,7 @@
 package connections
 
 import (
+	"go-net-service/pkg/logger"
 	"go-net-service/pkg/uuid"
 	"net"
 )
@@ -41,9 +42,9 @@ func (tc *TcpConnection) GetConnId() string {
 }
 
 func (tc *TcpConnection) startReader() {
-
+	logger.Info("Connection Start Reader")
 }
 
 func (tc *TcpConnection) startWriter() {
-
+	logger.Info("Connection Start Writer")
 }
