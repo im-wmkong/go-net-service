@@ -8,14 +8,14 @@ import (
 
 type TcpConnection struct {
 	Connection *net.TCPConn
-	Id         string
+	ID         string
 	MsgChan    chan []byte
 }
 
 func NewTcpConnection(Connection *net.TCPConn) *TcpConnection {
 	return &TcpConnection{
 		Connection: Connection,
-		Id:         uuid.Generate(),
+		ID:         uuid.Generate(),
 		MsgChan:    make(chan []byte),
 	}
 }
@@ -38,7 +38,7 @@ func (tc *TcpConnection) GetRemoteAddr() net.Addr {
 }
 
 func (tc *TcpConnection) GetConnId() string {
-	return tc.Id
+	return tc.ID
 }
 
 func (tc *TcpConnection) startReader() {
