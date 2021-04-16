@@ -25,14 +25,12 @@ func NewTcpServer() *TcpServer {
 func (s TcpServer) Start() {
 	logger.Infof("Starting Tcp Server at Host: %s, Port: %d", s.Host, s.Port)
 
-	// 获取一个tcp addr
 	address, err := net.ResolveTCPAddr(s.Network, fmt.Sprintf("%s:%d", s.Host, s.Port))
 	if err != nil {
 		logger.Errorw("Resolve tcp address error: ", err)
 		return
 	}
 
-	// 监听服务器地址
 	listener, err := net.ListenTCP(s.Network, address)
 	if err != nil {
 		logger.Errorf("Listen %s error: %s", s.Host, err)

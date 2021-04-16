@@ -12,9 +12,9 @@ type TcpConnection struct {
 	MsgChan    chan []byte
 }
 
-func NewTcpConnection(Connection *net.TCPConn) *TcpConnection {
+func NewTcpConnection(connection *net.TCPConn) *TcpConnection {
 	return &TcpConnection{
-		Connection: Connection,
+		Connection: connection,
 		ID:         uuid.Generate(),
 		MsgChan:    make(chan []byte),
 	}
